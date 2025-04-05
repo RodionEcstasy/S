@@ -1,0 +1,90 @@
+/* admin.css */
+.admin-dashboard {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+    background: #f5f7fa;
+}
+
+.admin-sidebar {
+    background: #2c3e50;
+    color: white;
+    padding: 1rem 0;
+}
+
+.admin-content {
+    padding: 2rem;
+}
+
+/* Стили таблиц */
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Бейджи статусов */
+.badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-success {
+    background: #e6f7ee;
+    color: #00a854;
+}
+
+.badge-danger {
+    background: #fff1f0;
+    color: #f5222d;
+}
+
+/* Кнопки действий */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-buttons button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-edit {
+    background: #e6f7ff;
+    color: #1890ff;
+}
+
+.btn-ban {
+    background: #fff1f0;
+    color: #f5222d;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .admin-dashboard {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-sidebar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 100;
+    }
+    
+    .admin-content {
+        padding-bottom: 80px;
+    }
+}
