@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketPlace - Профиль</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">MarketPlace</div>
+            <nav class="nav">
+                <a href="/">Главная</a>
+                <a href="/products.html">Товары</a>
+                <a href="/cart.html" class="cart-link">
+                    Корзина <span id="cart-counter" class="cart-counter">0</span>
+                </a>
+                <div class="user-menu">
+                    <a href="/profile.html" class="user-avatar">
+                        <img id="user-avatar-img" src="https://via.placeholder.com/40" alt="User">
+                        <span id="username-display"></span>
+                    </a>
+                    <button id="logout-btn" class="btn btn-outline btn-sm">Выйти</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="profile-page">
+        <div class="container">
+            <div class="profile-sidebar">
+                <div class="profile-avatar">
+                    <img id="profile-avatar" src="https://via.placeholder.com/150" alt="Аватар">
+                    <button class="btn btn-outline btn-sm">Изменить</button>
+                </div>
+                <nav class="profile-menu">
+                    <a href="/profile.html" class="active">Профиль</a>
+                    <a href="/profile-orders.html">Мои заказы</a>
+                    <a href="/profile-settings.html">Настройки</a>
+                    <a href="/profile-payments.html">Платежи</a>
+                </nav>
+            </div>
+
+            <div class="profile-content">
+                <h1>Личный кабинет</h1>
+                <div class="profile-info">
+                    <div class="info-item">
+                        <span class="info-label">Логин:</span>
+                        <span id="profile-username" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        <span id="profile-email" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Дата регистрации:</span>
+                        <span id="profile-regdate" class="info-value"></span>
+                    </div>
+                </div>
+
+                <h2>Последние заказы</h2>
+                <div class="orders-list" id="last-orders">
+                    <!-- Заказы будут загружены через JS -->
+                    <div class="empty-state">
+                        У вас пока нет заказов
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/profile.js"></script>
+</body>
+</html>

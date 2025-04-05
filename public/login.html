@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход | MarketPlace</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-page">
+    <!-- Шапка (упрощенная) -->
+    <header class="auth-header">
+        <a href="/" class="logo">
+            <i class="fas fa-store-alt"></i> MarketPlace
+        </a>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="auth-container">
+        <div class="auth-card">
+            <h1><i class="fas fa-sign-in-alt"></i> Вход в аккаунт</h1>
+            
+            <!-- Форма входа -->
+            <form id="login-form" class="auth-form">
+                <div class="input-group">
+                    <label for="login-credential">
+                        <i class="fas fa-user"></i> Логин или Email
+                    </label>
+                    <input 
+                        type="text" 
+                        id="login-credential" 
+                        placeholder="ivanov или ivanov@example.com"
+                        required
+                        autocomplete="username"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="login-password">
+                        <i class="fas fa-lock"></i> Пароль
+                    </label>
+                    <div class="password-wrapper">
+                        <input 
+                            type="password" 
+                            id="login-password" 
+                            placeholder="••••••••" 
+                            required
+                            autocomplete="current-password"
+                        >
+                        <button type="button" class="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="auth-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Войти
+                    </button>
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember"> Запомнить меня
+                    </label>
+                </div>
+            </form>
+
+            <!-- Альтернативные способы входа -->
+            <div class="auth-social">
+                <p>Или войдите через:</p>
+                <div class="social-buttons">
+                    <button class="btn btn-social google">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button class="btn btn-social vk">
+                        <i class="fab fa-vk"></i> VK
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ссылки для восстановления/регистрации -->
+            <div class="auth-links">
+                <a href="/register.html">
+                    <i class="fas fa-user-plus"></i> Создать аккаунт
+                </a>
+                <a href="/forgot-password.html">
+                    <i class="fas fa-key"></i> Забыли пароль?
+                </a>
+            </div>
+        </div>
+
+        <!-- Блок для вывода ошибок -->
+        <div id="login-error" class="error-message hidden">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="error-text"></span>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="auth-footer">
+        <p>© 2023 MarketPlace. Все права защищены.</p>
+    </footer>
+
+    <!-- Скрипты -->
+    <script src="/js/auth.js"></script>
+    <script>
+        // Показать/скрыть пароль
+        document.querySelector('.toggle-password').addEventListener('click', function() {
+            const passwordField = document.getElementById('login-password');
+            const icon = this.querySelector('i');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+
+        // Проверка авторизации при загрузке
+        if (localStorage.getItem('token')) {
+            window.location.href = '/profile.html';
+        }
+    </script>
+</body>
+</html>
