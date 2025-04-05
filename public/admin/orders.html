@@ -1,0 +1,107 @@
+<main class="admin-content">
+    <header class="admin-header">
+        <h1><i class="fas fa-shopping-cart"></i> Управление заказами</h1>
+        <div class="admin-actions">
+            <div class="date-range">
+                <input type="date" id="start-date">
+                <span>по</span>
+                <input type="date" id="end-date">
+                <button id="apply-filter" class="btn btn-secondary">
+                    Применить
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="admin-section">
+        <div class="order-stats">
+            <div class="stat-card">
+                <span class="stat-value" id="total-orders">0</span>
+                <span class="stat-label">Всего заказов</span>
+            </div>
+            <!-- Другие статистики -->
+        </div>
+
+        <div class="table-responsive">
+            <table id="orders-table" class="hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Дата</th>
+                        <th>Покупатель</th>
+                        <th>Сумма</th>
+                        <th>Статус</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script>
+    $(document).ready(function() {
+        // Инициализация таблицы заказов
+        const ordersTable = $('#orders-table').DataTable({
+            ajax: {
+                url: '/api/admin/orders',
+                data: function(d) {
+                    d.start_date = $('#start-date').val();
+                    d.end_date = $('#end-date').val();
+                }
+            },
+            columns: [
+                { data: 'id' },
+                { 
+                    data: 'created_at',
+                    render: function(data) {
+                        return new Date(data).toLocaleString();
+                    }
+                },
+                { data: 'user.username' },
+                { 
+                    data: 'total',
+                    render: function(data) {
+                        return `${data} ₽`;
+                    }
+                },
+                {
+                    data: 'status',
+                    render: function(data) {
+                        const statuses = {
+                            'pending': 'Ожидает',
+                            'paid': 'Оплачен',
+                            'shipped': 'Отправлен',
+                            'completed': 'Завершен',
+                            'cancelled': 'Отменен'
+                        };
+                        return `<span class="status-badge ${data}">${statuses[data]}</span>`;
+                    }
+                },
+                {
+                    data: 'id',
+                    render: function(data, type, row) {
+                        return `
+                            <div class="action-buttons">
+                                <button class="btn-view" data-id="${data}">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                ${row.status === 'pending' ? `
+                                    <button class="btn-cancel" data-id="${data}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                ` : ''}
+                            </div>
+                        `;
+                    }
+                }
+            ]
+        });
+
+        // Применение фильтров
+        $('#apply-filter').click(function() {
+            ordersTable.ajax.reload();
+        });
+    });
+</script>
