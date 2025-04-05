@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketPlace - Главная</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">MarketPlace</div>
+            <nav class="nav">
+                <a href="/" class="active">Главная</a>
+                <a href="/products.html">Товары</a>
+                <a href="/cart.html" class="cart-link">
+                    Корзина <span id="cart-counter" class="cart-counter">0</span>
+                </a>
+                <div class="auth-buttons">
+                    <a href="/login.html" class="btn btn-outline">Вход</a>
+                    <a href="/register.html" class="btn btn-primary">Регистрация</a>
+                </div>
+                <div class="user-menu" id="user-menu" style="display: none;">
+                    <a href="/profile.html" class="user-avatar">
+                        <img id="user-avatar" src="https://via.placeholder.com/40" alt="User">
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="container">
+                <h1>Лучшие товары по выгодным ценам</h1>
+                <p>Более 10 000 товаров в каталоге</p>
+                <a href="/products.html" class="btn btn-primary btn-lg">Перейти к покупкам</a>
+            </div>
+        </section>
+
+        <section class="featured-products">
+            <div class="container">
+                <h2>Популярные товары</h2>
+                <div class="products-grid" id="featured-products">
+                    <!-- Товары будут загружены через JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/about.html">О нас</a>
+                <a href="/contacts.html">Контакты</a>
+                <a href="/terms.html">Условия использования</a>
+            </div>
+            <div class="copyright">© 2023 MarketPlace</div>
+        </div>
+    </footer>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
